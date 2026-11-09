@@ -63,7 +63,7 @@ export const AudioPlayer: React.FC<{ className?: string }> = ({ className = '' }
   return (
     <aside
       aria-label="مشغل الموسيقى الاحتفالي المنساب"
-      className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 transition-all duration-300 max-w-[calc(100vw-2rem)] ${className}`}
+      className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-30 transition-all duration-300 max-w-[calc(100vw-2rem)] ${className}`}
     >
       <style>{`
         @keyframes soundbar1 {

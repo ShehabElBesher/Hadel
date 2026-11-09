@@ -115,7 +115,7 @@ export const App: React.FC = () => {
       <AudioPlayer />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 pb-32 sm:pb-36 relative z-10 space-y-10 sm:space-y-12">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 pb-32 sm:pb-36 relative space-y-10 sm:space-y-12">
         {/* Milestone 2 Celebratory Hero Section */}
         <Hero
           onStartCelebration={() => handleScrollToSection('memory-lane')}

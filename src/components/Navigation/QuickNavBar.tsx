@@ -56,7 +56,7 @@ export const QuickNavBar: React.FC<QuickNavBarProps> = ({
     <nav
       role="navigation"
       aria-label="شريط التنقل السريع"
-      className={`fixed bottom-2.5 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 max-w-[96vw] px-1.5 py-1 sm:px-3 sm:py-2 rounded-full glass-panel border border-gold-400/30 backdrop-blur-xl shadow-glow-gold flex items-center gap-0.5 sm:gap-1.5 transition-all duration-300 select-none ${className}`}
+      className={`fixed bottom-2.5 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 max-w-[96vw] px-1.5 py-1 sm:px-3 sm:py-2 rounded-full glass-panel border border-gold-400/30 backdrop-blur-xl shadow-glow-gold flex items-center gap-0.5 sm:gap-1.5 transition-all duration-300 select-none ${className}`}
     >
       {NAV_ITEMS.map((item) => {
         const IconComponent = item.icon;

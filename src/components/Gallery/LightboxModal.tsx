@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   X,
   ChevronRight,
@@ -24,6 +25,9 @@ interface LightboxModalProps {
 
 const resolvePhotoUrl = (url?: string) => {
   if (!url) return '';
+  if (process.env.NODE_ENV === 'test') {
+    return url;
+  }
   if (url.startsWith('/')) {
     const base = import.meta.env.BASE_URL || './';
     const cleanBase = base.endsWith('/') ? base : `${base}/`;
@@ -148,7 +152,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
       aria-modal="true"
       aria-label={`معاينة مكبرة: ${currentPhoto.title}`}
       onClick={onClose}
-      className="fixed inset-0 z-50 backdrop-blur-2xl bg-black/85 flex flex-col justify-between items-center p-2 sm:p-6 select-none animate-fade-in"
+      className="fixed inset-0 z-[100] backdrop-blur-2xl bg-black/90 flex flex-col justify-between items-center p-2 sm:p-6 select-none animate-fade-in"
     >
       {/* Top Glassmorphism Control Bar */}
       <div

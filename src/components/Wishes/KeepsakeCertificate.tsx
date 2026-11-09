@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Crown,
   Sparkles,
@@ -179,12 +180,12 @@ export const KeepsakeCertificateModal: React.FC<KeepsakeCertificateModalProps> =
     }
   };
 
-  return (
+  const modalContent = (
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="certificate-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-obsidian-950/90 backdrop-blur-md animate-fade-in overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-obsidian-950/90 backdrop-blur-md animate-fade-in overflow-y-auto"
       onClick={onClose}
     >
       <div
@@ -287,6 +288,10 @@ export const KeepsakeCertificateModal: React.FC<KeepsakeCertificateModalProps> =
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined'
+    ? createPortal(modalContent, document.body)
+    : modalContent;
 };
 
 export const KeepsakeCertificate: React.FC<KeepsakeCertificateProps> = (props) => {
