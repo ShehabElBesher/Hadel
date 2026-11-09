@@ -262,13 +262,26 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
               alt={currentPhoto.title}
               onError={(e) => {
                 const target = e.currentTarget;
-                if (!target.dataset.fallbackTried) {
-                  target.dataset.fallbackTried = '1';
-                  if (!target.src.includes('/Hadel/')) {
-                    target.src = `/Hadel/photos/${currentPhoto.originalFilename}`;
-                    return;
-                  }
-                  target.src = `./photos/${currentPhoto.originalFilename}`;
+                const currentAttempt = parseInt(target.dataset.fallbackStage || '0', 10);
+                const parentPicture = target.closest('picture');
+                if (parentPicture) {
+                  const sources = parentPicture.querySelectorAll('source');
+                  sources.forEach((s) => s.removeAttribute('srcset'));
+                }
+
+                const filename = currentPhoto.originalFilename;
+                const candidates = [
+                  `./photos/${filename}`,
+                  `/Hadel/photos/${filename}`,
+                  `/Hadel/public/photos/${filename}`,
+                  `./public/photos/${filename}`,
+                  `./${filename}`,
+                  `/Hadel/${filename}`,
+                ];
+
+                if (currentAttempt < candidates.length) {
+                  target.dataset.fallbackStage = String(currentAttempt + 1);
+                  target.src = candidates[currentAttempt];
                 }
               }}
               className={`max-h-[68vh] sm:max-h-[72vh] w-auto object-contain rounded-2xl transition-transform duration-500 ease-out ${

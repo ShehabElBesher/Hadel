@@ -42,3 +42,5 @@ Thumbs.db
 !public/
 !public/photos/
 !public/photos/*
+!docs/
+!docs/**/*

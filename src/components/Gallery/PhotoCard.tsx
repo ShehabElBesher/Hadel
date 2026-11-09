@@ -43,15 +43,29 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.currentTarget;
-    if (!target.dataset.fallbackTried) {
-      target.dataset.fallbackTried = '1';
-      if (!target.src.includes('/Hadel/')) {
-        target.src = `/Hadel/photos/${photo.originalFilename}`;
-        return;
-      }
-      target.src = `./photos/${photo.originalFilename}`;
+    const currentAttempt = parseInt(target.dataset.fallbackStage || '0', 10);
+    const parentPicture = target.closest('picture');
+    if (parentPicture) {
+      const sources = parentPicture.querySelectorAll('source');
+      sources.forEach((s) => s.removeAttribute('srcset'));
+    }
+
+    const filename = photo.originalFilename;
+    const candidates = [
+      `./photos/${filename}`,
+      `/Hadel/photos/${filename}`,
+      `/Hadel/public/photos/${filename}`,
+      `./public/photos/${filename}`,
+      `./${filename}`,
+      `/Hadel/${filename}`,
+    ];
+
+    if (currentAttempt < candidates.length) {
+      target.dataset.fallbackStage = String(currentAttempt + 1);
+      target.src = candidates[currentAttempt];
       return;
     }
+
     setImgError(true);
   };
 
