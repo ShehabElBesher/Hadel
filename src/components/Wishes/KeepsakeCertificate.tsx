@@ -184,11 +184,11 @@ export const KeepsakeCertificateModal: React.FC<KeepsakeCertificateModalProps> =
       role="dialog"
       aria-modal="true"
       aria-labelledby="certificate-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian-950/85 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-obsidian-950/90 backdrop-blur-md animate-fade-in overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-gradient-to-b from-obsidian-900 via-obsidian-850 to-obsidian-900 rounded-3xl p-6 sm:p-10 border-2 border-gold-400/60 shadow-[0_20px_60px_rgba(245,207,117,0.25)] text-center space-y-6 overflow-hidden"
+        className="relative w-full max-w-2xl bg-gradient-to-b from-obsidian-900 via-obsidian-850 to-obsidian-900 rounded-3xl p-5 sm:p-8 border-2 border-gold-400/60 shadow-[0_20px_60px_rgba(245,207,117,0.25)] text-center space-y-4 sm:space-y-6 overflow-y-auto max-h-[88vh] my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -196,9 +196,9 @@ export const KeepsakeCertificateModal: React.FC<KeepsakeCertificateModalProps> =
           type="button"
           onClick={onClose}
           aria-label="إغلاق الشهادة"
-          className="absolute top-4 left-4 w-9 h-9 rounded-full bg-obsidian-800 border border-gold-400/30 flex items-center justify-center text-gold-300 hover:text-white hover:border-gold-400 transition-colors z-20 cursor-pointer"
+          className="absolute top-4 left-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-obsidian-800 border border-gold-400/30 flex items-center justify-center text-gold-300 hover:text-white hover:border-gold-400 transition-colors z-20 cursor-pointer"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Ornate Gold Frame Corners */}

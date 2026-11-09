@@ -22,6 +22,16 @@ interface LightboxModalProps {
   onLike: (photoId: string, e: React.MouseEvent) => void;
 }
 
+const resolvePhotoUrl = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('/')) {
+    const base = import.meta.env.BASE_URL || './';
+    const cleanBase = base.endsWith('/') ? base : `${base}/`;
+    return `${cleanBase}${url.slice(1)}`;
+  }
+  return url;
+};
+
 export const LightboxModal: React.FC<LightboxModalProps> = ({
   photos,
   currentIndex,
@@ -246,10 +256,21 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           }`}
         >
           <picture>
-            {currentPhoto.webpPath && <source srcSet={currentPhoto.webpPath} type="image/webp" />}
+            {currentPhoto.webpPath && <source srcSet={resolvePhotoUrl(currentPhoto.webpPath)} type="image/webp" />}
             <img
-              src={currentPhoto.webPath}
+              src={resolvePhotoUrl(currentPhoto.webPath)}
               alt={currentPhoto.title}
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.dataset.fallbackTried) {
+                  target.dataset.fallbackTried = '1';
+                  if (!target.src.includes('/Hadel/')) {
+                    target.src = `/Hadel/photos/${currentPhoto.originalFilename}`;
+                    return;
+                  }
+                  target.src = `./photos/${currentPhoto.originalFilename}`;
+                }
+              }}
               className={`max-h-[68vh] sm:max-h-[72vh] w-auto object-contain rounded-2xl transition-transform duration-500 ease-out ${
                 isZoomed ? 'scale-150 sm:scale-175' : 'scale-100'
               }`}

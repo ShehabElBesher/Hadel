@@ -13,6 +13,16 @@ interface PhotoCardProps {
   featured?: boolean;
 }
 
+const resolvePhotoUrl = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('/')) {
+    const base = import.meta.env.BASE_URL || './';
+    const cleanBase = base.endsWith('/') ? base : `${base}/`;
+    return `${cleanBase}${url.slice(1)}`;
+  }
+  return url;
+};
+
 export const PhotoCard: React.FC<PhotoCardProps> = ({
   photo,
   index,
@@ -31,7 +41,17 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
     onLike(photo.id, e);
   };
 
-  const handleImageError = () => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    if (!target.dataset.fallbackTried) {
+      target.dataset.fallbackTried = '1';
+      if (!target.src.includes('/Hadel/')) {
+        target.src = `/Hadel/photos/${photo.originalFilename}`;
+        return;
+      }
+      target.src = `./photos/${photo.originalFilename}`;
+      return;
+    }
     setImgError(true);
   };
 
@@ -66,9 +86,9 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
       {/* Upright Image Container (aspect-[3/4] preserved for all 8 photos) */}
       <div className="relative aspect-[3/4] overflow-hidden bg-obsidian-950">
         <picture>
-          {photo.webpPath && <source srcSet={photo.webpPath} type="image/webp" />}
+          {photo.webpPath && <source srcSet={resolvePhotoUrl(photo.webpPath)} type="image/webp" />}
           <img
-            src={photo.webPath}
+            src={resolvePhotoUrl(photo.webPath)}
             alt={photo.title}
             loading="lazy"
             onError={handleImageError}

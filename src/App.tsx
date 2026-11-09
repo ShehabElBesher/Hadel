@@ -100,14 +100,14 @@ export const App: React.FC = () => {
             <h1 className="text-base sm:text-lg font-bold font-amiri gold-gradient-text">
               عيد ميلاد هديل • Hadel&apos;s Birthday
             </h1>
-            <p className="text-xs text-ivory-lavender">المرحلة الخامسة: الأمنيات، عدادات الذكريات، صندوق الهدية وشريط التنقل الملكي</p>
+            <p className="text-xs text-gold-300/90 font-medium">هدية ومفاجأة من أخوكِ شهاب بمناسبة يوم ميلادكِ السعيد 🤍</p>
           </div>
         </div>
 
         {/* Header Right Royal Badge */}
         <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-400/10 border border-gold-400/25 text-gold-300 text-xs font-medium backdrop-blur-md">
           <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-          <span>احتفال ملكي فاخر • هديل</span>
+          <span>من أخوكِ شهاب • إلى هديل</span>
         </div>
       </header>
 
@@ -115,7 +115,7 @@ export const App: React.FC = () => {
       <AudioPlayer />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 relative z-10 space-y-10 sm:space-y-12">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 pb-32 sm:pb-36 relative z-10 space-y-10 sm:space-y-12">
         {/* Milestone 2 Celebratory Hero Section */}
         <Hero
           onStartCelebration={() => handleScrollToSection('memory-lane')}
