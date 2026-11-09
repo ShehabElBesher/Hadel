@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import {
   X,
   ChevronRight,
@@ -25,9 +24,6 @@ interface LightboxModalProps {
 
 const resolvePhotoUrl = (url?: string) => {
   if (!url) return '';
-  if (process.env.NODE_ENV === 'test') {
-    return url;
-  }
   if (url.startsWith('/')) {
     const base = import.meta.env.BASE_URL || './';
     const cleanBase = base.endsWith('/') ? base : `${base}/`;
