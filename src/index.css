@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+  }
+
+  body {
+    background-color: #090614;
+    color: #faf8f5;
+    font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Custom Golden Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #090614;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a1f47;
+    border-radius: 4px;
+    border: 1px solid rgba(245, 207, 117, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism primitives */
+  .glass-panel {
+    background: rgba(19, 13, 36, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(245, 207, 117, 0.15);
+  }
+
+  .glass-panel-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glass-panel-hover:hover {
+    border-color: rgba(245, 207, 117, 0.4);
+    box-shadow: 0 0 25px rgba(245, 207, 117, 0.2);
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #fff4cc 0%, #f5cf75 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .rose-gradient-text {
+    background: linear-gradient(135deg, #fceade 0%, #e5989b 50%, #e29578 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gold-border-glow {
+    box-shadow: 0 0 20px rgba(245, 207, 117, 0.3);
+  }
+}

@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build outputs
+dist/
+dist-ssr/
+build/
+*.local
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and OS caches
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.idea/
+.agents/
+
+# CRITICAL PRESERVATION: Ensure all 8 original photos and public/photos/ are explicitly tracked
+!IMG-20230520-WA0002.jpg
+!IMG-20231101-WA0028.jpg
+!IMG-20240312-WA0000.jpg
+!IMG_20200402_181114.jpg
+!IMG_20200402_181512.jpg
+!IMG_20200402_184027.jpg
+!IMG_20200402_185317.jpg
+!IMG_20200402_190525.jpg
+!public/
+!public/photos/
+!public/photos/*
