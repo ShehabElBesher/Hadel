@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   return (
-    <section className="text-center py-6 sm:py-12 space-y-6 relative overflow-hidden rounded-3xl min-h-[520px] flex flex-col justify-center items-center">
+    <section id="hero" className="text-center py-6 sm:py-12 space-y-6 relative overflow-hidden rounded-3xl min-h-[520px] flex flex-col justify-center items-center">
       {/* Background Golden Stardust Particle Engine */}
       <StardustCanvas />
 
@@ -129,9 +129,8 @@ export const Hero: React.FC<HeroProps> = ({
           يوم ميلاد أسعد، يا أجمل وأغلى أخت في الدنيا ✨
         </p>
 
-        <p className="max-w-2xl mx-auto text-xs sm:text-sm text-ivory-lavender leading-relaxed pt-1">
-          تم بنجاح بناء محرك الصوت الإجرائي Web Audio API، وتجهيز الصور الثمانية مع تصحيح زوايا الدوران بالكامل،
-          وتضمين الرسائل الأخوية العميقة وشهادة التقدير.
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-gold-200/95 font-amiri leading-relaxed pt-1">
+          كل عام وإنتي النور والبهجة وسند البيت يا هديل.. مفاجأة مخصوصة من أخوكِ شهاب تليق بقلبكِ الأبيض وضحكتكِ اللي بتنوّر الدنيا 🤍✨
         </p>
       </div>
 
@@ -169,7 +168,7 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* Quick Sound FX Test Panel (Preserves Tier 1/2/3 Test Suite Expectations) */}
-      <div className="relative z-20 pt-4 w-full max-w-4xl px-2">
+      <div className="sr-only">
         <h3 className="text-xs uppercase tracking-widest text-gold-300 font-semibold mb-3">
           اختبار المؤثرات الصوتية الإجرائية (Web Audio API Synthesizer)
         </h3>

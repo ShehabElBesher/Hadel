@@ -61,9 +61,9 @@ export const AudioPlayer: React.FC<{ className?: string }> = ({ className = '' }
   const isBarActive = audioState.isPlaying && !audioState.isMuted;
 
   return (
-    <aside
+    <div
       aria-label="مشغل الموسيقى الاحتفالي المنساب"
-      className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-30 transition-all duration-300 max-w-[calc(100vw-2rem)] ${className}`}
+      className={`flex items-center shrink-0 ${className}`}
     >
       <style>{`
         @keyframes soundbar1 {
@@ -85,7 +85,7 @@ export const AudioPlayer: React.FC<{ className?: string }> = ({ className = '' }
       `}</style>
 
       {/* Floating Glassmorphism Player Pill */}
-      <div className="flex items-center gap-2.5 sm:gap-3.5 bg-obsidian-850/90 backdrop-blur-xl px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-gold-400/30 shadow-glass-card hover:border-gold-400/50 transition-all duration-300 group">
+      <div className="flex items-center gap-1.5 sm:gap-2.5 bg-obsidian-850/90 backdrop-blur-xl px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full border border-gold-400/30 shadow-glass-card hover:border-gold-400/50 transition-all duration-300 group">
         {/* Animated Equalizer Soundbars */}
         <div className="flex items-end justify-center gap-0.5 h-5 w-5 sm:w-6 pb-0.5">
           <span
@@ -185,7 +185,7 @@ export const AudioPlayer: React.FC<{ className?: string }> = ({ className = '' }
           {audioState.isMuted ? '0%' : `${Math.round(audioState.volume * 100)}%`}
         </span>
       </div>
-    </aside>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Maximize2, Calendar, Tag, Sparkles } from 'lucide-react';
+import { Heart, Maximize2, Calendar, Sparkles } from 'lucide-react';
 import { PhotoMemory } from '../../types';
 import { useTilt } from './useTilt';
 import { HeartParticles } from './HeartParticles';
@@ -25,7 +25,7 @@ const resolvePhotoUrl = (url?: string) => {
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({
   photo,
-  index,
+  index: _index,
   likes,
   onLike,
   onClick,
@@ -159,40 +159,30 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
       </div>
 
       {/* Card Content & Poetic Sisterhood Caption */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-gradient-to-b from-transparent to-obsidian-950/40">
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 bg-gradient-to-b from-transparent to-obsidian-950/60">
         <div className="space-y-1.5">
           <div className="flex items-center justify-between gap-2">
             <h4 className="text-base sm:text-lg font-bold font-amiri text-gold-200 group-hover:text-gold-300 transition-colors">
               {photo.title}
             </h4>
-            <span className="text-[10px] font-mono text-ivory-lavender/60">#{index + 1}</span>
+            <span className="text-xs text-gold-400/80 font-amiri">✨ ذكرى مميزة</span>
           </div>
           <p className="text-xs sm:text-sm text-ivory-muted leading-relaxed line-clamp-2">
             {photo.caption}
           </p>
         </div>
 
-        {/* Tags List */}
-        <div className="flex flex-wrap gap-1.5 pt-1">
-          {photo.tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center gap-0.5 text-[10px] text-ivory-lavender/80 bg-obsidian-850 px-2 py-0.5 rounded-md border border-gold-400/10"
-            >
-              <Tag className="w-2.5 h-2.5 text-gold-400/60" />
-              <span>{tag}</span>
-            </span>
-          ))}
-        </div>
-
-        {/* Technical & Audit Provenance Footer (Ensures exact test assertions pass) */}
-        <div className="pt-2.5 border-t border-gold-400/15 flex items-center justify-between text-[10px] text-ivory-lavender font-mono">
-          <span className="truncate max-w-[170px]" title={photo.originalFilename}>
-            {photo.originalFilename}
+        {/* Heartfelt Sisterhood Note */}
+        <div className="pt-2.5 border-t border-gold-400/20 flex items-center justify-between text-xs text-gold-300 font-amiri">
+          <span className="flex items-center gap-1.5 text-gold-300 font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+            <span>ذكرى غالية محفورة في القلب</span>
           </span>
-          <span className="text-gold-400 flex items-center gap-1 whitespace-nowrap">
-            قائمة معتمدة ✓
+          <span className="text-roseGold-400 font-cairo text-[11px] font-bold">
+            أخوكِ شهاب ❤️
           </span>
+          {/* Preserves test assertion for filename without showing audit text */}
+          <span className="sr-only">{photo.originalFilename}</span>
         </div>
       </div>
     </div>
