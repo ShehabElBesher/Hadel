@@ -15,12 +15,17 @@ interface PhotoCardProps {
 
 const resolvePhotoUrl = (url?: string) => {
   if (!url) return '';
-  if (url.startsWith('/')) {
-    const base = import.meta.env.BASE_URL || './';
-    const cleanBase = base.endsWith('/') ? base : `${base}/`;
-    return `${cleanBase}${url.slice(1)}`;
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
   }
-  return url;
+  if (typeof window !== 'undefined' && window.location.pathname.includes('/Hadel')) {
+    const clean = url.replace(/^\.?\/+/, '');
+    return `/Hadel/${clean}`;
+  }
+  if (url.startsWith('/')) {
+    return url;
+  }
+  return `./${url.replace(/^\.?\/+/, '')}`;
 };
 
 export const PhotoCard: React.FC<PhotoCardProps> = ({
@@ -52,12 +57,10 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
 
     const filename = photo.originalFilename;
     const candidates = [
-      `./photos/${filename}`,
       `/Hadel/photos/${filename}`,
-      `/Hadel/public/photos/${filename}`,
-      `./public/photos/${filename}`,
-      `./${filename}`,
-      `/Hadel/${filename}`,
+      `./photos/${filename}`,
+      `/photos/${filename}`,
+      `photos/${filename}`,
     ];
 
     if (currentAttempt < candidates.length) {
@@ -152,8 +155,10 @@ export const PhotoCard: React.FC<PhotoCardProps> = ({
 
         {/* Error Notification if photo couldn't load */}
         {imgError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-obsidian-900/70 p-4 text-center">
-            <span className="text-xs text-gold-300">جاري عرض المعاينة الرقمية</span>
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-obsidian-950/85 p-4 text-center">
+            <Heart className="w-8 h-8 text-roseGold-400 mb-2 animate-pulse" />
+            <span className="text-xs text-gold-300 font-semibold">{photo.title}</span>
+            <span className="text-[10px] text-gold-400/80 mt-1">ذكرى غالية محفورة في القلب ❤️</span>
           </div>
         )}
       </div>

@@ -24,12 +24,17 @@ interface LightboxModalProps {
 
 const resolvePhotoUrl = (url?: string) => {
   if (!url) return '';
-  if (url.startsWith('/')) {
-    const base = import.meta.env.BASE_URL || './';
-    const cleanBase = base.endsWith('/') ? base : `${base}/`;
-    return `${cleanBase}${url.slice(1)}`;
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    return url;
   }
-  return url;
+  if (typeof window !== 'undefined' && window.location.pathname.includes('/Hadel')) {
+    const clean = url.replace(/^\.?\/+/, '');
+    return `/Hadel/${clean}`;
+  }
+  if (url.startsWith('/')) {
+    return url;
+  }
+  return `./${url.replace(/^\.?\/+/, '')}`;
 };
 
 export const LightboxModal: React.FC<LightboxModalProps> = ({
@@ -271,12 +276,10 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
                 const filename = currentPhoto.originalFilename;
                 const candidates = [
-                  `./photos/${filename}`,
                   `/Hadel/photos/${filename}`,
-                  `/Hadel/public/photos/${filename}`,
-                  `./public/photos/${filename}`,
-                  `./${filename}`,
-                  `/Hadel/${filename}`,
+                  `./photos/${filename}`,
+                  `/photos/${filename}`,
+                  `photos/${filename}`,
                 ];
 
                 if (currentAttempt < candidates.length) {
