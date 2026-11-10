@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && node -e \"import fs from 'fs'; fs.cpSync('dist', 'docs', {recursive: true, force: true});\"",
+    "dev": "node -e \"import fs from 'fs'; fs.copyFileSync('src/index.template.html', 'index.html');\" && vite",
+    "build": "node -e \"import fs from 'fs'; fs.copyFileSync('src/index.template.html', 'index.html');\" && tsc && vite build && node -e \"import fs from 'fs'; fs.cpSync('dist', 'docs', {recursive: true, force: true}); fs.cpSync('dist/assets', 'assets', {recursive: true, force: true}); fs.cpSync('dist/photos', 'photos', {recursive: true, force: true}); fs.copyFileSync('dist/index.html', 'index.html');\"",
     "preview": "vite preview",
     "test": "vitest run"
   },
